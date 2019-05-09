@@ -55,7 +55,7 @@ export default class Lottery extends Vue {
         21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
         39, 40, 41, 42, 43,
     ];
-    protected rule =  ((value:number) => !!value ||  '値を入れてね' );
+    protected rule =  [(value: number) => !!value ||  '値を入れてね' ];
     protected sekiTmp = 0;
     protected sekiLabel = '出席番号を入れてください';
     protected select = {number: -1, seki: -1};
@@ -73,7 +73,7 @@ export default class Lottery extends Vue {
         tipcheck: false,
     };
     protected slotStart() {
-        if(this.sekiTmp !== 0 ) {
+        if (this.sekiTmp !== 0 ) {
             this.cardState.shuffleState = true;
             this.select.number = this.sekiTmp;   // とりあえず引いたよーって変数の中身を変更
             while (this.NGnum.indexOf(this.randNum) !== -1) {    // NGな配列の中に含まれている間乱数を生成し続ける

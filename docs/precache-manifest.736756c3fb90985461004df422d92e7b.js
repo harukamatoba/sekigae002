@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "a7140145ebaaf5fb14e40430af5d25c4",
-    "url": "fonts/fa-solid-900.a7140145.woff"
+    "revision": "d3b47375afd904983d9be8d6e239a949",
+    "url": "fonts/Roboto-Thin.d3b47375.woff"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
@@ -100,8 +100,8 @@ self.__precacheManifest = [
     "url": "fonts/fa-brands-400.2ef8ba34.woff"
   },
   {
-    "revision": "d3b47375afd904983d9be8d6e239a949",
-    "url": "fonts/Roboto-Thin.d3b47375.woff"
+    "revision": "a7140145ebaaf5fb14e40430af5d25c4",
+    "url": "fonts/fa-solid-900.a7140145.woff"
   },
   {
     "revision": "51d62fb3e7379d69ff0b",
@@ -128,10 +128,6 @@ self.__precacheManifest = [
     "url": "fonts/Roboto-Black.313a6563.woff"
   },
   {
-    "revision": "8a96edbbcd9a6991d79371aed0b0288e",
-    "url": "fonts/Roboto-ThinItalic.8a96edbb.woff"
-  },
-  {
     "revision": "13efe6cbc10b97144a28310ebdeda594",
     "url": "fonts/Roboto-LightItalic.13efe6cb.woff"
   },
@@ -150,6 +146,10 @@ self.__precacheManifest = [
   {
     "revision": "cc2fadc3928f2f223418887111947b40",
     "url": "fonts/Roboto-BlackItalic.cc2fadc3.woff"
+  },
+  {
+    "revision": "8a96edbbcd9a6991d79371aed0b0288e",
+    "url": "fonts/Roboto-ThinItalic.8a96edbb.woff"
   },
   {
     "revision": "a7b95dbdd87e0c809570affaf366a434",

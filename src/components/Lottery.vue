@@ -7,7 +7,7 @@
         //出席番号入力フォーム
         v-btn.mt-4.amber.accent-4.white--text(@click="slotStart" :disabled='check.btnDisable') 抽選
         //抽選ボタン　一回押すと押せなくなります
-        v-snackbar.error(v-model="check.tipcheck" vertical timeout=3000) 出席番号入れてね
+        v-snackbar.red--text(v-model="check.tipcheck" vertical timeout=3000) 出席番号入れてね
             v-divider.white(height=2)
             v-btn(flat @click="check.tipcheck = false") close
 
@@ -55,7 +55,7 @@ export default class Lottery extends Vue {
         21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
         39, 40, 41, 42, 43,
     ];
-    protected rule = [ value => !!value || 'Reqired' ];
+    protected rule =  ((value:number) => !!value ||  '値を入れてね' );
     protected sekiTmp = 0;
     protected sekiLabel = '出席番号を入れてください';
     protected select = {number: -1, seki: -1};

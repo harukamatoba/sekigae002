@@ -18,7 +18,7 @@
                 v-layout(align-center max-width="100%" min-width="100%")
                     v-card-text.white--text.shuffleText.text-xs-center.px-0(width="100%") {{cardState.text}}
     //ここが生成された席番号を表示される
-    v-dialog(v-model="check.dialog")
+    v-dialog(v-model="check.dialog" persistent)
         v-card.blue.pt-1
             v-card.ma-3.pa-1
                     //教室の箱
@@ -31,7 +31,7 @@
                         v-flex
                             v-layout(row wrap align-center justify-space-around)
                                 v-card.primary.lighten-4.mb-2(width='calc(100vw/8.5)' :aspect-ratio='1' v-for='seki in 43' :key='seki' @click='sekiClick(i)')
-                                    .catch(v-if='randNum == select.seki')
+                                    .catch(v-if='select.seki == seki')
                                         v-card.red(width='calc(100vw/8.5)' :aspect-ratio='1')
                                             v-card-text HIT
                                             //生成された席番号と表示している席の番号が等しい場合赤い箱にしてメッセージを変える

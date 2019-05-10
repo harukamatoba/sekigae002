@@ -82,6 +82,7 @@ export default class Lottery extends Vue {
         this.socket.on('set_seat', (position: number) => {
             console.log('position: '+ position);
             this.select.seki = position;
+            console.log('select.seki: ' + this.select.seki);
             // tslint:disable-next-line:max-line-length
             this.cardState.text = Math.floor((this.select.seki / 10)).toString() + ' ' + (this.select.seki % 10).toString();
         });

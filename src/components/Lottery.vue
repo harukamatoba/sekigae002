@@ -31,7 +31,7 @@
                         v-flex
                             v-layout(row wrap align-center justify-space-around)
                                 v-card.primary.lighten-4.mb-2(width='calc(100vw/8.5)' :aspect-ratio='1' v-for='seki in 43' :key='seki' @click='sekiClick(i)')
-                                    .catch(v-if='randNum == seki')
+                                    .catch(v-if='randNum == select.seki')
                                         v-card.red(width='calc(100vw/8.5)' :aspect-ratio='1')
                                             v-card-text HIT
                                             //生成された席番号と表示している席の番号が等しい場合赤い箱にしてメッセージを変える

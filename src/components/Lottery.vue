@@ -79,14 +79,10 @@ export default class Lottery extends Vue {
 
     protected socket = io();
     protected created() {
-        this.socket.on('set_seat', (list: JSON) => {
-            console.log('id: '+ list.id);
-            console.log('position: ' + list.position)
-            if (list.id === this.sekiTmp) {
-                this.randNum = list.position;
-            } else {
-                this.socket.emit('set_seat', -1);
-            }
+        this.socket.on('set_seat', (position: number) => {
+            console.log('position: '+ position);
+            this.select.seki = position;
+
         });
     // id 出席番号　position 席番号
     }
@@ -96,8 +92,8 @@ export default class Lottery extends Vue {
             this.socket.emit('set_seat', this.sekiTmp);
             this.cardState.shuffleState = true;
             this.select.number = this.sekiTmp;   // とりあえず引いたよーって変数の中身を変更
-            this.select.seki = this.randNum;
-            this.cardState.text = Math.floor((this.randNum / 10)).toString() + ' ' + (this.randNum % 10).toString();
+            // tslint:disable-next-line:max-line-length
+            this.cardState.text = Math.floor((this.select.seki / 10)).toString() + ' ' + (this.select.seki % 10).toString();
 
             this.check.btnDisable = true;
             this.check.dialog = true;

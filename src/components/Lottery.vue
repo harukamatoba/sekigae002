@@ -80,7 +80,7 @@ export default class Lottery extends Vue {
     protected socket = io();
     protected created() {
         this.socket.on('set_seat', (position: number) => {
-            // console.log('position: '+ position);
+            console.log('position: '+ position);
             this.select.seki = position;
 
         });
@@ -89,7 +89,7 @@ export default class Lottery extends Vue {
 
     protected slotStart() {
         if (this.sekiTmp !== 0 ) {
-            this.socket.emit('set_seat', this.sekiTmp);
+            this.socket.emit('send_id', this.sekiTmp);
             this.cardState.shuffleState = true;
             this.select.number = this.sekiTmp;   // とりあえず引いたよーって変数の中身を変更
             // tslint:disable-next-line:max-line-length

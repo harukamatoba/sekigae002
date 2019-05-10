@@ -40,15 +40,21 @@
             v-card-actions
                 v-spacer
                 v-btn.white(@click="check.dialog = false") OK
-
-
+    .aftercheck(v-if="cardState.shuffleState==true")
+        after
 </template>
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
+import io from 'socket.io-client';
+import After from '@/components/ShuffleAfter.vue';
 
 
-@Component
+@Component({
+    components: {
+        After,
+    },
+})
 export default class Lottery extends Vue {
     protected number = [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -56,11 +62,9 @@ export default class Lottery extends Vue {
         39, 40, 41, 42, 43,
     ];
     protected rule =  [(value: number) => !!value ||  '値を入れてね' ];
-    protected sekiTmp = 0;
-    protected sekiLabel = '出席番号を入れてください';
+    protected sekiTmp = 0;  // selectで選んだ出席番号
     protected select = {number: -1, seki: -1};
 
-    protected NGnum = [-1, 1, 40, 5, 33];
     protected cardState = {
         elevate: 0,             // アニメーション再生後、数字が確定すると浮き上がらせたい
         shuffleState: false,    // シャッフルする前はfalse、し始めるとtrue
@@ -72,15 +76,29 @@ export default class Lottery extends Vue {
         btnDisable: false,
         tipcheck: false,
     };
+
+    protected socket = io();
+    protected created() {
+        this.socket.on('set_seat', (list: JSON) => {
+            console.log('id: '+ list.id);
+            console.log('position: ' + list.position)
+            if (list.id === this.sekiTmp) {
+                this.randNum = list.position;
+            } else {
+                this.socket.emit('set_seat', -1);
+            }
+        });
+    // id 出席番号　position 席番号
+    }
+
     protected slotStart() {
         if (this.sekiTmp !== 0 ) {
+            this.socket.emit('set_seat', this.sekiTmp);
             this.cardState.shuffleState = true;
             this.select.number = this.sekiTmp;   // とりあえず引いたよーって変数の中身を変更
-            while (this.NGnum.indexOf(this.randNum) !== -1) {    // NGな配列の中に含まれている間乱数を生成し続ける
-                this.randNum = Math.floor(Math.random() * 43) + 1;
-            }
             this.select.seki = this.randNum;
             this.cardState.text = Math.floor((this.randNum / 10)).toString() + ' ' + (this.randNum % 10).toString();
+
             this.check.btnDisable = true;
             this.check.dialog = true;
         } else {

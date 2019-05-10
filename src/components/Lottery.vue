@@ -39,7 +39,7 @@
                                         v-card-text {{seki}}
             v-card-actions
                 v-spacer
-                v-btn.white(@click="check.dialog = false") OK
+                v-btn.white(@click="finishClick") OK
     .aftercheck(v-if="cardState.shuffleState==true")
         after
 </template>
@@ -80,7 +80,7 @@ export default class Lottery extends Vue {
     protected socket = io();
     protected created() {
         this.socket.on('set_seat', (position: number) => {
-            console.log('position: '+ position);
+            // console.log('position: '+ position);
             this.select.seki = position;
 
         });
@@ -103,6 +103,10 @@ export default class Lottery extends Vue {
     }
     protected async KyoudanClick() {
         await this.$vdialog.alert({title: '警告', message: 'そこ、野本さんの席だからぁ！！'}).promise;
+    }
+    protected finishClick() {
+        this.check.dialog = false;
+        this.$router.push({name: 'Finish'});
     }
 }
 </script>

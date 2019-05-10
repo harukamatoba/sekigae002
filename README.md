@@ -46,3 +46,5 @@ Reload Setting
 
 yarn が入ってない
 npm install -g yarn
+
+-D dev

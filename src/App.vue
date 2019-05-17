@@ -3,7 +3,7 @@ v-app#app
     v-navigation-drawer(app temporary v-model='drawer')
     v-toolbar(app color='primary' dark)
         v-toolbar-side-icon(@click.stop='drawer = !drawer')
-        v-toolbar-title App
+        v-toolbar-title 席替え
 
     v-content#content
         router-view

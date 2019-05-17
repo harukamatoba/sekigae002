@@ -1,11 +1,27 @@
 <template lang='pug'>
 .Lottery
+    p.mb-0.ml-3.mt-1 出席番号
     v-layout(wrap row align-center justify-space-around)
         v-flex(xs6)
-            v-select(v-model='sekiTmp' :items="number" singlle-line :rules="rule"
-            menu-props="auto" label="出席番号" return-object)
+                v-card
+                    v-layout
+                        v-card-text.ml-2 {{radio}}
+                        v-btn.pa-0(flat icon @click="test=true") ▼
         //出席番号入力フォーム
-        v-btn.mt-4.amber.accent-4.white--text(@click="slotStart" :disabled='check.btnDisable') 抽選
+        v-dialog(color="white" v-model="test" max-width="500px" scrollable)
+            v-card
+                v-card-text(style='height: 500px;')
+                    p.pa-0 出席番号を選択してください
+                    v-radio-group(v-model="radio")
+                        v-radio.pa-1(v-for="i in 43" :key="i" :value="i" :label="i")
+                v-divider.blue(height="2px")
+                v-card-actions
+                    v-spacer
+                    v-btn(@click="test=false") OK
+
+
+
+        v-btn.mt-2.amber.accent-4.white--text(@click="slotStart" :disabled='check.btnDisable') 抽選
         //抽選ボタン　一回押すと押せなくなります
         v-snackbar.red--text(v-model="check.tipcheck" vertical timeout=3000) 出席番号入れてね
             v-divider.white(height=2)
@@ -17,7 +33,8 @@
             v-card.blue(max-width="100%" min-width="200px" height="100%")
                 v-layout(align-center max-width="100%" min-width="100%")
                     v-card-text.white--text.shuffleText.text-xs-center.px-0(width="100%") {{cardState.text}}
-    //ここが生成された席番号を表示される
+        //ここが生成された席番号を表示される
+
     v-dialog(v-model="check.dialog" persistent)
         v-card.blue.pt-1
             v-card.ma-3.pa-1
@@ -65,6 +82,8 @@ export default class Lottery extends Vue {
     protected sekiTmp = 0;  // selectで選んだ出席番号
     protected select = {number: -1, seki: -1};
 
+    protected test = false;
+    protected radio = 0;
     protected cardState = {
         elevate: 0,             // アニメーション再生後、数字が確定すると浮き上がらせたい
         shuffleState: false,    // シャッフルする前はfalse、し始めるとtrue

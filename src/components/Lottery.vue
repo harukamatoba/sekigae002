@@ -78,8 +78,6 @@ export default class Lottery extends Vue {
         21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
         39, 40, 41, 42, 43,
     ];
-    protected rule =  [(value: number) => !!value ||  '値を入れてね' ];
-    protected sekiTmp = 0;  // selectで選んだ出席番号
     protected select = {number: -1, seki: -1};
 
     protected test = false;
@@ -108,10 +106,10 @@ export default class Lottery extends Vue {
     }
 
     protected slotStart() {
-        if (this.sekiTmp !== 0 ) {
-            this.socket.emit('send_id', this.sekiTmp);
+        if (this.radio !== 0 ) {
+            this.socket.emit('send_id', this.radio);
             this.cardState.shuffleState = true;
-            this.select.number = this.sekiTmp;   // とりあえず引いたよーって変数の中身を変更
+            this.select.number = this.radio;   // とりあえず引いたよーって変数の中身を変更
             // tslint:disable-next-line:max-line-length
             this.cardState.text = Math.floor((this.select.seki / 10)).toString() + ' ' + (this.select.seki % 10).toString();
 

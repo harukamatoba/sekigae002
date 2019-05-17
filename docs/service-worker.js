@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.37e42dcb786526cefa26d3d14fb0ff0e.js"
+  "precache-manifest.2f35cca882a124cdc9373fae618f1db4.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vuetify-template"});
